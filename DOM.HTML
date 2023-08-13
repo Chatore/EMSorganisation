@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="FR">
+<head>
+    <link rel="stylesheet" href="DOM.CSS">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌐Organisation EMS🌐</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet" >
+
+     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script defer src="DOM3.JS"></script>
+    <script src="https://kit.fontawesome.com/33e495fb35.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+
+                    </li>
+                    <li class="nav-item">
+
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"> Contact</a>
+                    </li>
+                </ul>
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button type="button" class="btn btn-secondary boutonPanier" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Voir panier</button>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <span
+                    class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger nbreArticle total-elements-in-panier">15</span>
+            </div>
+        </div>
+    </nav>
+                <!---------- Debut header ------------->
+     <header><div class="play">
+        <div class="play-inner play-clip toggle-tooltip" data-clipboard-text="PLAY.HADARIA.FR" data-original-title="Copier l'IP">
+            <div class="text">
+                <span class="top" id="server-ip">
+                    PLAY.HADARIA.FR
+                </span>
+                <span class="bottom">
+                    Versions 1.8 à 1.18+
+                </span>
+            </div>
+            <div class="icon">
+                <i class="fas fa-gamepad"></i>
+            </div>
+        </div>
+    </div></header>
+                <!----------- Fin header -------------->
+                <!----------- debut affichage produits ------->
+    <div class="row produits" id="produitContent"> </div>
+                <!--------- fin affciahge produits ---------->
+
+                <!--------- right offcanvas --------->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h4 class="offcanvas-title" id="offcanvasRightLabel">Mon panier</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body uk-overflow-auto container" id="alerts">
+            <div class="text-panier">
+                <p>Voici la liste de vos produits (vous ppouvez augmenter la quantité si vous le souhaitez)</p>
+            </div>
+            <div id="validation">
+                <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft"
+                    aria-controls="offcanvasLeft" class="btn btn-primary btn-sm">Validez votre commande</button>
+            </div>
+                  <!--------- liste panier ---------->
+<div class="panier">
+            <div class="panier-header">
+                <div class="column1">Produit</div>
+                <div class="column2">Prix Unit</div>
+                <div class="column3">Quantité</div>
+                <div class="column4"></div> <!--- Pour prevoir le décallage pour ajustement des colonnes --->
+            </div>
+            <div class="panier-elements">
+                <!-- affichage des éléments du panier ici -->
+            </div>
+            <div class="panier-footer">
+                <div class="subtotal" id="totalPrix">
+                    total (0 produits): 0 €
+                </div>
+            </div>
+        </div>
+            <!--------- Fin liste panier  --------->
+        </div>
+    </div>
+                <!---------- fin right canvas -------->
+                <!---------- debut left canvas -------->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasLeftLabel">Valider ma commande</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" id="alerts">
+                <!----------- DEBUT FORMULAIRE ----------->
+            <div class="text-form">
+                <form id="final" class="form">
+                    <div class="mb-3 form-field">
+                        <input type="text" class="form-control" name="username" id="username" aria-describedby="namelHelp"
+                            placeholder="Pseudo">
+                            <small></small>
+                    </div>
+                    <div class="mb-3 form-field">
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
+                            placeholder="Email">
+                            <small></small>
+                    </div>   
+                    <div class="mb-3 form-field">
+                        <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordHelp"
+                            placeholder="Mot de passe">
+                            <small></small>
+                    </div>   
+                    <div class="form-field">
+                        <!-------- Appelle de la fonction finaliser --------->
+                        <button type="submit" 
+                        
+                        aria-controls="" id="submit" class="btn btn-primary btn-sm" onclick="finaliser()">Payer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+                    <!---------- fin left canvas ----------->
+
+                    <!----------- DEBUT CANVAS SYNTHESE COMMANDE --------->
+    <div class="modal fade" id="ModalValidationCommande" tabindex="-1" aria-labelledby="ModalValidationCommande" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalValidationCommande">Synthèse de la commande et informations</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3>Vos informations</h3>
+              <div class="row mb-2">
+                <div class="col-6">Nom: <span id="nomClient"></span> </div>
+                <div class="col-6">Prénom: <span  id="prenomClient"></span> </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-6">N° Tél: <span id="telephoneClient"></span> </div>
+                <div class="col-6">Email: <span id="emailClient"></span> </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-12">Adresse: <span  id="addresseClient"></span> </div>
+              </div>
+              <h3>Votre panier</h3>
+              
+              <ul class="list-group list-group-flush" id="listFinal"></ul>
+              
+              <div class="alert alert-danger" role="alert">
+                Total à payer : <span id="totalPaye"></span>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              <button type="button" class="btn btn-primary finaliser">Finaliser la commande et payer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div>
+        <footer class="bg-dark py-5 text-light">
+            <div class="container px-5">
+            <div class="row mb-3 mb-sm-0">
+            <div class="col-lg-6 col-xl mt-lg-0">
+            <h6 class="text-uppercase">EMS</h6>
+            <ul class="nav flex-column" style="font-size: 1em">
+            <li class="nav-item"><a href="#" class="nav-link p-0 link-secondary">Accueil</a></li>
+
+            </ul>
+            </div>
+            <div class="col-lg-6 col-xl mt-4 mt-lg-0">
+            <h6 class="text-uppercase">Informations suplémentaire</h6>
+            <ul class="nav flex-column" style="font-size: 1em">
+            <ul class="mb-0">Discord : discord.gg/sJmftbQbUF
+            <p class="mb-0">Telephone : 74 923 153</p>
+            <p class="mb-0">Gmail : EMS@gmail.com</p>
+            <p class="mb-0">Youtube : EMSorganisation</p>
+            
+            </ul>
+            </div>
+            <div class="col-xl-6 mt-4 mt-xl-0 text-secondary text-start text-xl-end">
+            <div class="footer-legal">
+            <img class="https://cdn.discordapp.com/attachments/1139277801787232346/1139345080340185098/image.png" src="https://cdn.discordapp.com/attachments/1139277801787232346/1139345080340185098/image.png">
+            <p class="mb-0">© 2017-2023 EMS</p>
+            <p class="mb-0">EMS est une Organisation pour les Serveur Minecraft 100% F2W Semi-Moddé</p>
+            <p class="mb-0">Nous ne sommes pas afiliés à Mojang</p>
+            </div>
+            </div>
+            </div>
+            </div>
+            </footer>
+      </div>
+                    <!--------- FIN CANVA SYNTHESE ------------>
+    <script src="DOM.JS"></script>
+    <script src="DOM2.JS"></script>
+</body>
+</html>
